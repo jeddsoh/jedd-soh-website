@@ -3,13 +3,17 @@
 import type { HTMLAttributes } from 'react'
 import { cx } from '@/utils/cx'
 import { LogoMinimal } from './logo-minimal'
+import { LineShadowText } from '@/components/magicui/line-shadow-text'
+import { useTheme } from 'next-themes'
 
 export const Logo = (props: HTMLAttributes<HTMLOrSVGElement>) => {
+  const theme = useTheme();
+  const shadowColor = theme.resolvedTheme === "dark" ? "white" : "black";
   return (
     <div
       {...props}
       className={cx(
-        'flex h-8 w-max items-center justify-start overflow-visible',
+        'flex h-12 w-max items-center justify-start overflow-visible',
         props.className,
       )}
     >
@@ -17,10 +21,16 @@ export const Logo = (props: HTMLAttributes<HTMLOrSVGElement>) => {
       <LogoMinimal className="aspect-square h-full w-auto shrink-0" />
 
       {/* Gap that adjusts to the height of the container */}
-      <div className="aspect-[0.3] h-full" />
+      <div className="aspect-[0.2] h-full" />
 
       {/* Logomark */}
-      <p className="text-primary text-[1.5rem] font-black tracking-tight">Jedd Soh</p>
+
+      <h1 className="text-balance text-4xl font-[900] leading-none tracking-tight">
+        Jedd
+        <LineShadowText className="italic" shadowColor={shadowColor}>
+          Soh
+        </LineShadowText>
+      </h1>
       {/* <svg width="140" height="24" viewBox="0 0 140 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M122.731 23.4192V0.580811H128.972V10.2308L128.135 10.2951C128.264 9.24437 128.575 8.38659 129.068 7.72181C129.583 7.03559 130.216 6.52092 130.966 6.17781C131.738 5.8347 132.574 5.66315 133.475 5.66315C134.805 5.66315 135.909 5.94192 136.788 6.49948C137.668 7.05704 138.322 7.83976 138.75 8.84765C139.201 9.83409 139.426 10.9706 139.426 12.2573V23.4192H133.186V13.6405C133.186 12.6111 133.046 11.8284 132.767 11.2923C132.489 10.7348 131.974 10.456 131.223 10.456C130.494 10.456 129.937 10.7348 129.551 11.2923C129.165 11.8499 128.972 12.6969 128.972 13.8335V23.4192H122.731Z" className='fg-primary' />
         <path d="M112.417 23.8052C110.529 23.8052 108.878 23.4299 107.463 22.6793C106.069 21.9288 104.975 20.878 104.182 19.527C103.41 18.1545 103.024 16.5569 103.024 14.7342C103.024 12.9114 103.41 11.3245 104.182 9.97348C104.975 8.62248 106.069 7.5717 107.463 6.82115C108.878 6.04915 110.529 5.66315 112.417 5.66315C114.304 5.66315 115.944 6.04915 117.338 6.82115C118.753 7.5717 119.847 8.62248 120.619 9.97348C121.412 11.3245 121.809 12.9114 121.809 14.7342C121.809 16.5569 121.412 18.1545 120.619 19.527C119.847 20.878 118.753 21.9288 117.338 22.6793C115.944 23.4299 114.304 23.8052 112.417 23.8052ZM112.417 19.334C113.382 19.334 114.121 18.9373 114.636 18.1438C115.151 17.3504 115.408 16.2138 115.408 14.7342C115.408 13.2759 115.151 12.1501 114.636 11.3566C114.121 10.5418 113.382 10.1343 112.417 10.1343C111.452 10.1343 110.712 10.5418 110.197 11.3566C109.682 12.1501 109.425 13.2759 109.425 14.7342C109.425 16.2138 109.682 17.3504 110.197 18.1438C110.712 18.9373 111.452 19.334 112.417 19.334Z" className='fg-primary-foreground' />

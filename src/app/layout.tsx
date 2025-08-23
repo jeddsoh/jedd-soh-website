@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cx(geist.variable, 'bg-primary antialiased')}>
+      <body className={cx(geist.variable, 'antialiased')}>
         <RouteProvider>
           <Theme>{children}</Theme>
         </RouteProvider>
