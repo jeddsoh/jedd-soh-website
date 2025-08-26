@@ -1,26 +1,14 @@
 'use client'
 
-import { FileTreeNavigation } from "@/components/file-tree-navigation"
+import { motion } from 'motion/react'
 import { RainbowButton } from "@/components/magicui/rainbow-button"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Mail01 } from "@untitledui/icons"
-import { GitHub } from "@/components/foundations/social-icons"
-import { LinkedIn } from "@/components/foundations/social-icons"
-import Link from "next/link"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Logo } from "@/components/foundations/logo/logo"
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler"
 import { useTheme } from "next-themes"
-import { BorderBeam } from "@/components/magicui/border-beam"
-import { LogoMinimal } from "@/components/foundations/logo/logo-minimal"
-import { LineShadowText } from "@/components/magicui/line-shadow-text"
-import { FooterSection } from "@/components/sections/shared-sections/footer-section"
-import { FloatingDock } from "@/components/aceternityui/floating-dock"
-import { Home, User, Mail } from "lucide-react"
-import { ProfileSection } from "@/components/sections/home-page/profile-section"
-import { Separator } from "@/components/ui/separator"
 import { useEffect, useState } from "react"
-import { Ripple } from "@/components/magicui/ripple"
-import { AvatarProfilePhoto } from "@/components/base/avatar/avatar-profile-photo"
+import { ProjectsSidePanelWrapper } from "@/components/sections/home-page/projects-side-panel-wrapper"
+import { ProjectsPanelProvider, useProjectsPanel } from "@/providers/projects-panel-provider"
 
 export default function RootLayout({
   children,
@@ -28,41 +16,107 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const theme = useTheme();
-  const shadowColor = theme.resolvedTheme === "dark" ? "white" : "black";
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    // Trigger animation after a brief delay
-    setTimeout(() => {
-      setIsExpanded(true);
-    }, 1000);
-  }, []);
+  const { isOpen, openProjectsPanel, closeProjectsPanel } = useProjectsPanel();
 
   return (
-    <div className="flex flex-col fg-foreground text-foreground h-dvh overflow-y-auto overflow-x-hidden max-w-full">
-      <section className="w-full px-4 py-2 flex flex-row items-center justify-between">
-        <Logo className="flex mt-2" />
+    <div className="flex flex-col fg-foreground text-foreground h-dvh overflow-hidden overflow-x-hidden max-w-full">
+      <motion.section
+        className="w-full px-4 py-2 flex flex-row items-center justify-between"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.5,
+          ease: [0.25, 0.46, 0.45, 0.94]
+        }}
+      >
+        <motion.div
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+        >
+          <Logo className="flex mt-2" />
+        </motion.div>
         <div className="flex flex-row gap-2 items-center absolute left-1/2 -translate-x-1/2">
 
         </div>
-        <RainbowButton variant="default" size="icon" asChild>
-          <AnimatedThemeToggler />
-        </RainbowButton>
-      </section>
-
-
-      <div className="flex-1 flex flex-col md:flex-row gap-4 p-4 pt-0 min-h-0">
-        <ScrollArea
-          className={`border rounded-lg bg-background max-h-screen transition-all duration-3000 ease-in-out flex-2 opacity-100  `}
+        <motion.div
+          initial={{ x: 20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
         >
-          {children}
-        </ScrollArea>
-        {/* <ScrollArea
-          className={`border rounded-lg bg-background max-h-screen transition-all duration-3000 ease-in-out w-lg`}
+          <RainbowButton variant="default" size="icon" asChild>
+            <AnimatedThemeToggler />
+          </RainbowButton>
+        </motion.div>
+      </motion.section>
+
+      <motion.div
+        className="flex flex-row p-4 pt-0 h-full min-h-0 flex-1"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        layout
+        transition={{
+          duration: 0.6,
+          ease: [0.25, 0.46, 0.45, 0.94],
+          delay: 0.2,
+          layout: {
+            type: "spring",
+            damping: 25,
+            stiffness: 200
+          }
+        }}
+      >
+        {/* Main Content */}
+        <motion.div
+          className="flex-1 h-full"
+          layout
+          layoutId="main-content"
+          transition={{
+            type: "spring",
+            damping: 25,
+            stiffness: 200,
+            mass: 0.8
+          }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1 }}
         >
-          {children}
-        </ScrollArea> */}
-      </div>
+
+          <ScrollArea
+            className={`border rounded-lg bg-gradient-to-b from-muted/50 to-background h-full transition-all duration-300 ease-out`}
+          >
+            {children}
+          </ScrollArea>
+        </motion.div>
+
+        {/* Animated Gap */}
+        <motion.div
+          layout
+          className="w-4"
+          animate={{
+            width: isOpen ? 16 : 0
+          }}
+          transition={{
+            type: "spring",
+            damping: 25,
+            stiffness: 200
+          }}
+        />
+
+        {/* Projects Side Panel */}
+        <motion.div
+          layout
+          transition={{
+            type: "spring",
+            damping: 25,
+            stiffness: 200
+          }}
+          className='overflow-x-visible hidden md:block'
+        >
+          <ProjectsSidePanelWrapper />
+        </motion.div>
+
+      </motion.div>
     </div>
   )
 }

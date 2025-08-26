@@ -4,6 +4,7 @@ import { RouteProvider } from '@/providers/router-provider'
 import { Theme } from '@/providers/theme'
 import '@/styles/globals.css'
 import { cx } from '@/utils/cx'
+import { ProjectsPanelProvider } from '@/providers/projects-panel-provider'
 
 const geist = Geist({
   subsets: ['latin'],
@@ -30,9 +31,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cx(geist.variable, 'antialiased')}>
         <RouteProvider>
-          <Theme>{children}</Theme>
+          <ProjectsPanelProvider>
+            <Theme>{children}</Theme>
+          </ProjectsPanelProvider>
         </RouteProvider>
       </body>
-    </html>
+    </html >
   )
 }

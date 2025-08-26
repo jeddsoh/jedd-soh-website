@@ -8,8 +8,11 @@ import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
+import { useProjectsPanel } from "@/providers/projects-panel-provider";
 
 export function HeroSection() {
+    const { openProjectsPanel } = useProjectsPanel();
+
     return (
         <div className="relative mx-auto flex flex-col items-center justify-center w-full">
             <div className="px-4 py-10 md:py-20">
@@ -61,43 +64,17 @@ export function HeroSection() {
                     }}
                     className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
                 >
-                    <RainbowButton>
+                    <RainbowButton onClick={openProjectsPanel}>
                         View my work
                     </RainbowButton>
                     <RainbowButton variant="outline">
                         Hire me im broke
                     </RainbowButton>
                 </motion.div>
-                <motion.div
-                    initial={{
-                        opacity: 0,
-                        y: 10,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        y: 0,
-                    }}
-                    transition={{
-                        duration: 0.3,
-                        delay: 1.2,
-                    }}
-                    className="relative z-10 mt-20 rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900"
-                >
-                    <div className="w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700">
-                        {/* <img
-                            src="https://assets.aceternity.com/pro/aceternity-landing.webp"
-                            alt="Landing page preview"
-                            className="aspect-[16/9] h-auto w-full object-cover"
-                            height={1000}
-                            width={1000}
-                        /> */}
-                        <div className="aspect-video h-auto w-full object-cover">
 
-                        </div>
-                    </div>
-                </motion.div>
-            </div>
-        </div>
+
+            </div >
+        </div >
     );
 }
 
