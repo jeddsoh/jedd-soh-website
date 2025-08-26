@@ -25,7 +25,7 @@ export const Logo = (props: HTMLAttributes<HTMLOrSVGElement>) => {
 
       {/* Logomark */}
 
-      <h1 className="text-balance text-4xl font-[900] leading-none tracking-tight">
+      <h1 className="text-balance text-4xl font-[900] leading-none tracking-tight mb-1">
         Jedd
         <LineShadowText className="italic" shadowColor={shadowColor}>
           Soh

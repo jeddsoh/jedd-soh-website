@@ -10,51 +10,59 @@ import Link from "next/link"
 import { Logo } from "@/components/foundations/logo/logo"
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler"
 import { useTheme } from "next-themes"
+import { BorderBeam } from "@/components/magicui/border-beam"
+import { LogoMinimal } from "@/components/foundations/logo/logo-minimal"
+import { LineShadowText } from "@/components/magicui/line-shadow-text"
+import { FooterSection } from "@/components/sections/shared-sections/footer-section"
+import { FloatingDock } from "@/components/aceternityui/floating-dock"
+import { Home, User, Mail } from "lucide-react"
+import { ProfileSection } from "@/components/sections/home-page/profile-section"
+import { Separator } from "@/components/ui/separator"
+import { useEffect, useState } from "react"
+import { Ripple } from "@/components/magicui/ripple"
+import { AvatarProfilePhoto } from "@/components/base/avatar/avatar-profile-photo"
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const theme = useTheme();
+  const shadowColor = theme.resolvedTheme === "dark" ? "white" : "black";
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation after a brief delay
+    setTimeout(() => {
+      setIsExpanded(true);
+    }, 1000);
+  }, []);
 
   return (
-    <div className="relative flex flex-row h-screen w-screen bg-background fg-foreground">
-
-      <div className="relative flex h-full min-w-3xs max-w-sm p-4 flex-col gap-5 max-h-screen justify-center overflow-hidden">
-        <Logo />
-        <FileTreeNavigation />
-        <div className="flex flex-row gap-2 items-center w-full justify-start items-center">
-          <RainbowButton variant='outline' size="icon" asChild>
-            <Link href="mailto:jeddsoh@gmail.com" target="_blank" rel="noopener noreferrer">
-              <Mail01 />
-            </Link>
-          </RainbowButton>
-          <RainbowButton variant="outline" size="icon" asChild>
-            <Link href="https://github.com/jeddsoh" target="_blank" rel="noopener noreferrer">
-              <GitHub />
-            </Link>
-          </RainbowButton>
-          <RainbowButton variant="outline" size="icon" asChild>
-            <Link href="https://www.linkedin.com/in/jeddsoh/" target="_blank" rel="noopener noreferrer">
-              <LinkedIn />
-            </Link>
-          </RainbowButton>
-        </div>
-      </div>
-
-      <div className="relative flex flex-col grow-1 h-full w-full p-4 ">
-        <div className="right-6 left-6 rounded-md shadow-lg border p-2  bg-background flex flex-row gap-2 z-10 items-center justify-between absolute top-6 mx-auto">
-          <Logo className="" />
-          <RainbowButton variant="default" size="icon" asChild>
-            <AnimatedThemeToggler />
-          </RainbowButton>
+    <div className="flex flex-col fg-foreground text-foreground h-dvh overflow-y-auto overflow-x-hidden max-w-full">
+      <section className="w-full px-4 py-2 flex flex-row items-center justify-between">
+        <Logo className="flex mt-2" />
+        <div className="flex flex-row gap-2 items-center absolute left-1/2 -translate-x-1/2">
 
         </div>
-        <ScrollArea className="flex flex-col w-full h-full gap-4 border rounded-lg scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent">
+        <RainbowButton variant="default" size="icon" asChild>
+          <AnimatedThemeToggler />
+        </RainbowButton>
+      </section>
+
+
+      <div className="flex-1 flex flex-col md:flex-row gap-4 p-4 pt-0 min-h-0">
+        <ScrollArea
+          className={`border rounded-lg bg-background max-h-screen transition-all duration-3000 ease-in-out flex-2 opacity-100  `}
+        >
           {children}
         </ScrollArea>
+        {/* <ScrollArea
+          className={`border rounded-lg bg-background max-h-screen transition-all duration-3000 ease-in-out w-lg`}
+        >
+          {children}
+        </ScrollArea> */}
       </div>
     </div>
-
   )
 }

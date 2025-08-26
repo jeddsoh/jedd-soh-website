@@ -3,6 +3,7 @@
 import type { SVGProps } from 'react'
 import { useId } from 'react'
 import { cx } from '@/utils/cx'
+import { BorderBeam } from '@/components/magicui/border-beam'
 
 export const LogoMinimal = (props: SVGProps<SVGSVGElement>) => {
   const id = useId()
@@ -15,6 +16,7 @@ export const LogoMinimal = (props: SVGProps<SVGSVGElement>) => {
           <rect width="38" height="38" transform="translate(3)" fill="url(#paint0_linear_2_3067)" />
           <path opacity="0.6" d="M26.3549 29.5326C25.9587 30.3534 25.1276 30.875 24.2161 30.875H19.2226C17.4657 30.875 16.3169 29.0335 17.0896 27.4556L26.0057 9.24721C26.4044 8.4329 27.232 7.91667 28.1387 7.91667L33.0064 7.91667C34.7575 7.91667 35.9065 9.7472 35.1452 11.3242L26.3549 29.5326Z" fill="white" />
           <path opacity="0.9" d="M11.2407 26.717C11.8319 28.012 13.6623 28.038 14.29 26.7603L17.8804 19.4521C18.4312 18.331 17.6152 17.0208 16.366 17.0208L9.43924 17.0208C8.21091 17.0208 7.39423 18.2914 7.90434 19.4088L11.2407 26.717Z" fill="white" />
+          
         </g>
         <rect x="3.79167" y="0.791667" width="36.4167" height="36.4167" rx="8.70833" stroke="url(#paint1_linear_2_3067)" strokeWidth="1.58333" />
       </g>
@@ -66,6 +68,7 @@ export const LogoMinimal = (props: SVGProps<SVGSVGElement>) => {
           <rect x="3" width="38" height="38" rx="9.5" fill="white" />
         </clipPath>
       </defs>
+     
     </svg>
 
 

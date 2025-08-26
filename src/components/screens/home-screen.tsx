@@ -1,99 +1,24 @@
-'use client'
-
-import {
-  BookOpen01,
-  Check,
-  Copy01,
-  Cube01,
-  HelpCircle,
-  Passport,
-  Mail01,
-} from '@untitledui/icons'
-import { Button } from '@/components/base/buttons/button'
-import { ButtonUtility } from '@/components/base/buttons/button-utility'
-import { useClipboard } from '@/hooks/use-clipboard'
+import { ProfileSection } from '../sections/home-page/profile-section'
+import { FAQSection } from '../sections/home-page/faq-section'
+import { HeroSection } from '../sections/home-page/hero-section'
+import { ProjectsSection } from '../sections/home-page/projects-section'
+import { projects } from '@/constants/projects'
+import { AboutSection } from '../sections/home-page/about-section'
+import { Ripple } from '../magicui/ripple'
 import { AvatarProfilePhoto } from '../base/avatar/avatar-profile-photo'
-import { RainbowButton } from '../magicui/rainbow-button'
-import { GitHub, LinkedIn } from '../foundations/social-icons'
-import Link from 'next/link'
-import { Mail } from 'lucide-react'
 
 export const HomeScreen = () => {
-  const clipboard = useClipboard()
 
   return (
-    <div className="flex flex-col min-h-screen bg-muted">
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 md:px-8">
-        <div className="relative flex items-center justify-center flex-col gap-8">
-          <figcaption className="not-prose mt-6 inline-flex flex-col items-center md:mt-8 gap-0">
-            <AvatarProfilePhoto size="lg" alt="Jedd Soh" src="/images/avatar.png" />
+    <div className="flex flex-col w-full">
+      <section id="hero" className="relative flex flex-col items-center justify-center min-h-96 -mb-16 md:-mb-32">
 
-            <p className="mt-4 text-2xl font-black tracking-tight">Jedd Soh</p>
-            <cite className="mt-0.5 not-italic text-md">Software Engineer</cite>
-          </figcaption>
+        <div className="flex items-center justify-center flex-col gap-8 w-full h-full">
+          <AvatarProfilePhoto size="lg" alt="Jedd Soh" src="/images/avatar.png" />
         </div>
-
-        <div className="relative mt-6 flex h-10 items-center rounded-lg border border-secondary bg-secondary">
-          <code className="px-3 font-mono text-secondary">
-            npx untitledui@latest add
-          </code>
-
-          <hr className="h-10 w-px bg-border-secondary" />
-
-          <ButtonUtility
-            color="tertiary"
-            size="sm"
-            tooltip="Copy"
-            className="mx-1"
-            icon={clipboard.copied ? Check : Copy01}
-            onClick={() => clipboard.copy('npx untitledui@latest add')}
-          />
-        </div>
-
-        <div className="mt-6 flex items-center gap-3">
-          <RainbowButton>
-            Shit i done did
-          </RainbowButton>
-          <RainbowButton variant="outline">
-            Shit i done did
-          </RainbowButton>
-        </div>
-
-        {/* <div className="mt-6 flex items-center gap-3">
-          <Button
-            href="https://www.untitledui.com/react/docs/introduction"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="link-color"
-            size="lg"
-            iconLeading={Cube01}
-          >
-            Projects
-          </Button>
-          <div className="h-px w-4 bg-brand-solid" />
-          <Button
-            href="https://www.untitledui.com/react/resources/icons"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="link-color"
-            size="lg"
-            iconLeading={Passport}
-          >
-            Resumé
-          </Button>
-          <div className="h-px w-4 bg-brand-solid" />
-          <Button
-            href="https://github.com/untitleduico/react/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="link-color"
-            size="lg"
-            iconLeading={HelpCircle}
-          >
-            Help
-          </Button>
-        </div> */}
-      </div>
+        <Ripple />
+      </section>
+      <HeroSection />
     </div>
   )
 }

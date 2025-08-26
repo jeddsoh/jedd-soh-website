@@ -5,6 +5,7 @@ import { User01 } from '@untitledui/icons'
 import { cx } from '@/utils/cx'
 import { type AvatarProps } from './avatar'
 import { AvatarOnlineIndicator, VerifiedTick } from './base-components'
+import { BorderBeam } from '@/components/magicui/border-beam'
 
 const styles = {
   sm: {
@@ -68,7 +69,7 @@ export const AvatarProfilePhoto = ({
           className={cx(
             'size-full rounded-full object-cover',
             contrastBorder &&
-              'outline-1 -outline-offset-1 outline-avatar-contrast-border',
+            'outline-1 -outline-offset-1 outline-avatar-contrast-border',
             styles[size].content,
           )}
         />
@@ -86,6 +87,8 @@ export const AvatarProfilePhoto = ({
           <span className={cx('text-quaternary', styles[size].initials)}>
             {initials}
           </span>
+
+          <BorderBeam className="absolute from-transparent via-muted-foreground to-transparent" />
         </div>
       )
     }
@@ -101,6 +104,8 @@ export const AvatarProfilePhoto = ({
           <PlaceholderIcon
             className={cx('text-fg-quaternary', styles[size].icon)}
           />
+
+          <BorderBeam className="absolute from-transparent via-muted-foreground to-transparent" />
         </div>
       )
     }
@@ -115,6 +120,7 @@ export const AvatarProfilePhoto = ({
         {placeholder || (
           <User01 className={cx('text-fg-quaternary', styles[size].icon)} />
         )}
+        <BorderBeam className="absolute from-transparent via-muted-foreground to-transparent" />
       </div>
     )
   }
@@ -145,7 +151,7 @@ export const AvatarProfilePhoto = ({
   return (
     <div
       className={cx(
-        'relative flex shrink-0 items-center justify-center rounded-full bg-primary ring-1 ring-secondary_alt',
+        'relative flex shrink-0 items-center justify-center rounded-full bg-transparent ',
         styles[size].root,
         (!src || isFailed) && styles[size].rootWithPlaceholder,
         className,
@@ -153,6 +159,20 @@ export const AvatarProfilePhoto = ({
     >
       {renderMainContent()}
       {renderBadgeContent()}
+      <BorderBeam
+        duration={8}
+        delay={4}
+        size={160}
+        borderWidth={1}
+        className="absolute from-foreground via-transparent to-transparent"
+      />
+      <BorderBeam
+        duration={8}
+        delay={0}
+        size={160}
+        borderWidth={1}
+        className="absolute from-foreground via-transparent to-transparent"
+      />
     </div>
   )
 }
