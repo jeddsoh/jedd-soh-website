@@ -19,10 +19,10 @@ export const ProfileSection = () => {
   const clipboard = useClipboard()
 
   return (
-    <section id="hero" className="relative flex min-h-0 flex-1 flex-col items-center justify-center">
+    <section id="hero" className="relative flex flex-1 flex-col items-center mx-auto justify-center w-full overflow-hidden">
 
-      <div className="relative flex items-center justify-center flex-col gap-8 overflow-visible mt-2">
-        <figcaption className="not-prose mt-6 inline-flex flex-col items-center md:mt-16 gap-0">
+      <div className=" w-full mx-auto relative flex items-center justify-center flex-col gap-8 overflow-visible mt-2">
+        <figcaption className="not-prose mt-6 mx-auto inline-flex flex-col items-center md:mt-16 gap-0">
           <AvatarProfilePhoto size="lg" alt="Jedd Soh" src="/images/avatar.png" />
 
           <p className="mt-4 text-2xl font-black tracking-tight">Jedd Soh</p>

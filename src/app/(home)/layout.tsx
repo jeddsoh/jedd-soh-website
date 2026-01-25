@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import { RainbowButton } from "@/components/magicui/rainbow-button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Logo } from "@/components/foundations/logo/logo"
@@ -9,6 +9,7 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { ProjectsSidePanelWrapper } from "@/components/sections/home-page/projects-side-panel-wrapper"
 import { ProjectsPanelProvider, useProjectsPanel } from "@/providers/projects-panel-provider"
+import { ThemeTogglerButton } from '@/components/animate-ui/components/buttons/theme-toggler'
 
 export default function RootLayout({
   children,
@@ -19,7 +20,7 @@ export default function RootLayout({
   const { isOpen, openProjectsPanel, closeProjectsPanel } = useProjectsPanel();
 
   return (
-    <div className="flex flex-col fg-foreground text-foreground h-dvh overflow-hidden overflow-x-hidden max-w-full">
+    <div className="flex flex-col bg-background text-foreground h-dvh w-dvw max-w-[100dvw] overflow-hidden overflow-x-hidden">
       <motion.section
         className="w-full px-4 py-2 flex flex-row items-center justify-between"
         initial={{ opacity: 0, y: -20 }}
@@ -44,42 +45,21 @@ export default function RootLayout({
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          <RainbowButton variant="default" size="icon" asChild>
-            <AnimatedThemeToggler />
-          </RainbowButton>
+          <ThemeTogglerButton
+            variant="outline"
+            size="default"
+            direction="ltr"
+            modes={['light', 'dark']}
+          />
         </motion.div>
       </motion.section>
 
-      <motion.div
-        className="flex flex-row p-4 pt-0 h-full min-h-0 flex-1"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        layout
-        transition={{
-          duration: 0.6,
-          ease: [0.25, 0.46, 0.45, 0.94],
-          delay: 0.2,
-          layout: {
-            type: "spring",
-            damping: 25,
-            stiffness: 200
-          }
-        }}
+      <div
+        className="flex flex-row p-4 pt-0 h-full min-h-0 flex-1 relative"
       >
         {/* Main Content */}
-        <motion.div
-          className="flex-1 h-full"
-          layout
-          layoutId="main-content"
-          transition={{
-            type: "spring",
-            damping: 25,
-            stiffness: 200,
-            mass: 0.8
-          }}
-          initial={{ opacity: 0, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1 }}
+        <div
+          className="flex-1 h-full min-w-0"
         >
 
           <ScrollArea
@@ -87,12 +67,11 @@ export default function RootLayout({
           >
             {children}
           </ScrollArea>
-        </motion.div>
+        </div>
 
         {/* Animated Gap */}
         <motion.div
-          layout
-          className="w-4"
+          className="overflow-hidden"
           animate={{
             width: isOpen ? 16 : 0
           }}
@@ -104,19 +83,27 @@ export default function RootLayout({
         />
 
         {/* Projects Side Panel */}
-        <motion.div
-          layout
-          transition={{
-            type: "spring",
-            damping: 25,
-            stiffness: 200
-          }}
-          className='overflow-x-visible hidden md:block'
-        >
-          <ProjectsSidePanelWrapper />
-        </motion.div>
+        <AnimatePresence mode="wait">
+          {isOpen && (
+            <motion.div
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "auto", opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              transition={{
+                type: "spring",
+                damping: 25,
+                stiffness: 200
+              }}
+              className='overflow-hidden hidden md:block'
+            >
+              <div className="max-w-md w-full h-full border rounded-lg overflow-y-hidden overflow-x-visible">
+                <ProjectsSidePanelWrapper />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      </motion.div>
+      </div>
     </div>
   )
 }

@@ -27,7 +27,7 @@ const ProjectCard = ({ title, link, thumbnail, index }: ProjectCardProps) => {
                 delay: index * 0.1,
                 ease: "easeOut"
             }}
-            className="group relative overflow-x-visible"
+            className="group relative w-full max-w-full"
         >
             <Link href={link} target="_blank">
                 <CardContainer className="z-10 transition-all duration-300 p-2">
@@ -56,8 +56,8 @@ const ProjectCard = ({ title, link, thumbnail, index }: ProjectCardProps) => {
 
 export function ProjectCards() {
     return (
-        <div className="p-4 overflow-x-visible">
-            <div className="flex flex-col gap-4 items-center justify-start w-full overflow-x-visible">
+        <div className="p-4 w-full">
+            <div className="flex flex-col gap-4 items-center justify-start w-full">
                 {projects.map((project, index) => (
                     <ProjectCard
                         key={project.title}

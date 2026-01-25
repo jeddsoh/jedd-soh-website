@@ -57,7 +57,7 @@ export const ProjectsSection = ({
     return (
         <div
             ref={ref}
-            className="h-[300vh] py-40 overflow-hidden w-full mx-auto antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+            className="h-[300vh] py-40 overflow-hidden w-full max-w-[100vw] overflow-x-hidden mx-auto antialiased relative flex flex-col self-auto [perspective:1000px]"
         >
             <Header />
             <motion.div
@@ -103,14 +103,12 @@ export const ProjectsSection = ({
 
 export const Header = () => {
     return (
-        <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
-            <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-                The Ultimate <br /> development studio
+        <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
+            <h1 className="text-4xl md:text-8xl font-bold dark:text-white bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/50">
+                Selected <br /> Works
             </h1>
-            <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-                We build beautiful products with the latest technologies and frameworks.
-                We are a team of passionate developers and designers that love to build
-                amazing products.
+            <p className="max-w-2xl text-lg md:text-2xl mt-8 text-muted-foreground leading-relaxed">
+                A collection of products built with precision, speed, and focus on user experience.
             </p>
         </div>
     );
@@ -133,27 +131,28 @@ export const ProductCard = ({
                 x: translate,
             }}
             whileHover={{
-                y: -20,
+                y: -10,
+                scale: 1.02,
+                transition: { duration: 0.3 }
             }}
             key={project.title}
-            className="group/product h-96 w-[30rem] relative shrink-0"
+            className="group/product h-96 w-[90vw] md:w-[35rem] relative shrink-0 rounded-2xl overflow-hidden glass-card p-1"
         >
             <a
                 href={project.link}
-                className="block group-hover/product:shadow-2xl "
+                className="block w-full h-full relative rounded-xl overflow-hidden"
             >
                 <img
                     src={project.thumbnail}
-                    height="600"
-                    width="600"
-                    className="object-cover object-left-top absolute h-full w-full inset-0"
+                    className="object-cover object-center absolute h-full w-full inset-0 transition-transform duration-500 group-hover/product:scale-110"
                     alt={project.title}
                 />
             </a>
-            <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-            <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-                {project.title}
-            </h2>
+            <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-sm pointer-events-none flex items-end p-6">
+                <h2 className="text-2xl font-bold text-white translate-y-4 group-hover/product:translate-y-0 transition-transform duration-300">
+                    {project.title}
+                </h2>
+            </div>
         </motion.div>
     );
 };

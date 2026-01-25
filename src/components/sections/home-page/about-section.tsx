@@ -12,18 +12,20 @@ export const AboutSection = () => {
                     <p className="mt-4 text-2xl font-black tracking-tight">Jedd Soh</p>
                     <cite className="mt-0.5 not-italic text-md">Software Engineer</cite>
                 </figcaption>
-                <div className="not-prose my-8 rounded-2xl bg-card px-5 py-6 text-tertiary md:my-12 md:p-8 [&>p+p]:mt-4.5 ">
+                <div className="not-prose my-8 rounded-2xl bg-card/50 glass-card px-5 py-6 text-tertiary md:my-12 md:p-8 [&>p+p]:mt-4.5 ">
                     <p>
-                        Morbi sed imperdiet in ipsum, adipiscing elit dui lectus. Tellus id scelerisque est ultricies ultricies. Duis est sit sed leo nisl, blandit
-                        elit sagittis. Quisque tristique consequat quam sed. Nisl at scelerisque amet nulla purus habitasse.
+                        I'm a passionate Design Engineer with a deep love for building digital products that just feel right.
+                        My journey started with a curiosity specific to how things work on the web, which quickly evolved into a career
+                        focused on the intersection of design and engineering.
                     </p>
                     <p>
-                        Nunc sed faucibus bibendum feugiat sed interdum. Ipsum egestas condimentum mi massa. In tincidunt pharetra consectetur sed duis facilisis
-                        metus. Etiam egestas in nec sed et. Quis lobortis at sit dictum eget nibh tortor commodo cursus.
+                        I believe the best products are built when design and code are treated as a single medium.
+                        I specialize in React, Next.js, and TypeScript, and I obsess over details like interaction design,
+                        performance, and accessibility.
                     </p>
                     <p>
-                        Odio felis sagittis, morbi feugiat tortor vitae feugiat fusce aliquet. Nam elementum urna nisi aliquet erat dolor enim. Ornare id morbi eget
-                        ipsum. Aliquam senectus neque ut id eget consectetur dictum. Donec posuere pharetra odio consequat scelerisque et, nunc tortor.
+                        When I'm not coding, you can find me exploring new coffee shops in OKC or tinkering with
+                        IoT projects at home.
                     </p>
                 </div>
             </div>

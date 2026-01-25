@@ -14,67 +14,57 @@ export function HeroSection() {
     const { openProjectsPanel } = useProjectsPanel();
 
     return (
-        <div className="relative mx-auto flex flex-col items-center justify-center w-full">
-            <div className="px-4 py-10 md:py-20">
-                <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-black text-foreground md:text-4xl lg:text-7xl">
+        <div className="relative mx-auto flex flex-col items-center justify-center w-full min-h-[60vh] overflow-hidden">
+            {/* Background Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-green-500/20 blur-[120px] rounded-full sm:w-[500px] sm:h-[300px]" />
+
+            <div className="px-4 py-10 md:py-20 flex flex-col items-center relative z-10">
+                <BadgeGroup addonText="Availability" color="brand" theme="modern">
+                    Open for opportunities
+                </BadgeGroup>
+                <h1 className="mt-6 relative z-10 mx-auto max-w-4xl text-center text-3xl font-black text-foreground md:text-5xl lg:text-7xl tracking-tight">
                     {`Apps and websites. Designed well. Built fast.`
                         .split(" ")
                         .map((word, index) => (
                             <motion.span
                                 key={index}
-                                initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
+                                initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
                                 animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                                 transition={{
-                                    duration: 0.3,
+                                    duration: 0.5,
                                     delay: index * 0.1,
-                                    ease: "easeInOut",
+                                    ease: [0.16, 1, 0.3, 1], // Custom spring-like easing
                                 }}
-                                className="mr-2 inline-block"
+                                className="mr-3 inline-block bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-transparent"
                             >
                                 {word}
                             </motion.span>
                         ))}
                 </h1>
                 <motion.p
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                    }}
-                    transition={{
-                        duration: 0.3,
-                        delay: 0.8,
-                    }}
-                    className="relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-muted-foreground"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    className="relative z-10 mx-auto max-w-xl py-6 text-center text-lg md:text-xl font-medium text-muted-foreground leading-relaxed"
                 >
-                    I'm Jedd, a design engineer based in Oklahoma City. I like making useful, usable, and beautiful things for the web.
+                    I'm Jedd, a design engineer based in Oklahoma City. I craft useful, usable, and beautiful digital experiences.
                 </motion.p>
 
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                    }}
-                    transition={{
-                        duration: 0.3,
-                        delay: 1,
-                    }}
-                    className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.8 }}
+                    className="relative z-10 mt-6 flex flex-wrap items-center justify-center gap-4"
                 >
-                    <RainbowButton onClick={openProjectsPanel}>
+                    <RainbowButton onClick={openProjectsPanel} className="h-12 px-8 text-base">
                         View my work
                     </RainbowButton>
-                    <RainbowButton variant="outline">
-                        Hire me im broke
-                    </RainbowButton>
+                    <button className="h-12 px-8 rounded-xl font-semibold border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors">
+                        Contact Me
+                    </button>
                 </motion.div>
-
-
-            </div >
-        </div >
+            </div>
+        </div>
     );
 }
 
