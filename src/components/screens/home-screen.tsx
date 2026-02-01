@@ -16,7 +16,7 @@ export const HomeScreen = () => {
   return (
     <div className="w-full h-full flex flex-col gap-24 relative">
       <ProfileSection />
-      <ExpandableProjectCards />
+      {/* <ExpandableProjectCards /> */}
     </div>
   )
 }

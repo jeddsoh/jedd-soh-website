@@ -47,7 +47,7 @@ export function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="relative z-10 mx-auto max-w-xl py-6 text-center text-lg md:text-xl font-medium text-muted-foreground leading-relaxed"
                 >
-                    I'm Jedd, a design engineer based in Oklahoma City. I craft useful, usable, and beautiful digital experiences.
+                    I&apos;m Jedd, a design engineer based in Oklahoma City. I craft useful, usable, and beautiful digital experiences.
                 </motion.p>
 
                 <motion.div

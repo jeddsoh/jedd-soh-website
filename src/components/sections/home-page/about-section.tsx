@@ -14,7 +14,7 @@ export const AboutSection = () => {
                 </figcaption>
                 <div className="not-prose my-8 rounded-2xl bg-card/50 glass-card px-5 py-6 text-tertiary md:my-12 md:p-8 [&>p+p]:mt-4.5 ">
                     <p>
-                        I'm a passionate Design Engineer with a deep love for building digital products that just feel right.
+                        I&apos;m a passionate Design Engineer with a deep love for building digital products that just feel right.
                         My journey started with a curiosity specific to how things work on the web, which quickly evolved into a career
                         focused on the intersection of design and engineering.
                     </p>
@@ -24,7 +24,7 @@ export const AboutSection = () => {
                         performance, and accessibility.
                     </p>
                     <p>
-                        When I'm not coding, you can find me exploring new coffee shops in OKC or tinkering with
+                        When I&apos;m not coding, you can find me exploring new coffee shops in OKC or tinkering with
                         IoT projects at home.
                     </p>
                 </div>
