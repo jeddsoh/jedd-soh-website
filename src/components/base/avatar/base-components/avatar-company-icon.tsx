@@ -1,6 +1,7 @@
 'use client'
 
 import { cx } from '@/utils/cx'
+import Image from 'next/image'
 
 const sizes = {
   xs: 'size-2',
@@ -22,12 +23,15 @@ export const AvatarCompanyIcon = ({
   src,
   alt,
 }: AvatarCompanyIconProps) => (
-  <img
-    src={src}
-    alt={alt}
-    className={cx(
-      'bg-primary-25 absolute -right-0.5 -bottom-0.5 rounded-full object-cover ring-[1.5px] ring-bg-primary',
-      sizes[size],
-    )}
-  />
+  <div className={cx(
+    'absolute -right-0.5 -bottom-0.5 rounded-full ring-[1.5px] ring-bg-primary',
+    sizes[size],
+  )}>
+    <Image
+      src={src}
+      alt={alt || "Company Icon"}
+      fill
+      className="bg-primary-25 rounded-full object-cover"
+    />
+  </div>
 )

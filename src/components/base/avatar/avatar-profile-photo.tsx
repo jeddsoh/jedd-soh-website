@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { User01 } from '@untitledui/icons'
 import { cx } from '@/utils/cx'
 import { type AvatarProps } from './avatar'
@@ -62,12 +63,13 @@ export const AvatarProfilePhoto = ({
   const renderMainContent = () => {
     if (src && !isFailed) {
       return (
-        <img
+        <Image
           src={src}
-          alt={alt}
+          alt={alt || "Avatar"}
+          fill
           onError={() => setIsFailed(true)}
           className={cx(
-            'size-full rounded-full object-cover',
+            'rounded-full object-cover',
             contrastBorder &&
             'outline-1 -outline-offset-1 outline-avatar-contrast-border',
             styles[size].content,

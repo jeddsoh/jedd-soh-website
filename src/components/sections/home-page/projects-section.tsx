@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import {
     motion,
     useScroll,
@@ -142,8 +143,9 @@ export const ProductCard = ({
                 href={project.link}
                 className="block w-full h-full relative rounded-xl overflow-hidden"
             >
-                <img
+                <Image
                     src={project.thumbnail}
+                    fill
                     className="object-cover object-center absolute h-full w-full inset-0 transition-transform duration-500 group-hover/product:scale-110"
                     alt={project.title}
                 />

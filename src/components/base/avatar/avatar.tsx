@@ -1,6 +1,7 @@
 'use client'
 
 import { type FC, type ReactNode, useState } from 'react'
+import Image from 'next/image'
 import { User01 } from '@untitledui/icons'
 import { cx } from '@/utils/cx'
 import { AvatarOnlineIndicator, VerifiedTick } from './base-components'
@@ -110,11 +111,12 @@ export const Avatar = ({
   const renderMainContent = () => {
     if (src && !isFailed) {
       return (
-        <img
+        <Image
           data-avatar-img
-          className="size-full rounded-full object-cover"
+          fill
+          className="rounded-full object-cover"
           src={src}
-          alt={alt}
+          alt={alt || "Avatar"}
           onError={() => setIsFailed(true)}
         />
       )
@@ -175,7 +177,7 @@ export const Avatar = ({
         'relative inline-flex shrink-0 items-center justify-center rounded-full bg-avatar-bg outline-transparent',
         // Focus styles
         focusable &&
-          'group-outline-focus-ring group-focus-visible:outline-2 group-focus-visible:outline-offset-2',
+        'group-outline-focus-ring group-focus-visible:outline-2 group-focus-visible:outline-offset-2',
         contrastBorder && 'outline outline-avatar-contrast-border',
         styles[size].root,
         className,
