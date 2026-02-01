@@ -5,6 +5,8 @@ import { Theme } from '@/providers/theme'
 import '@/styles/globals.css'
 import { cx } from '@/utils/cx'
 import { ProjectsPanelProvider } from '@/providers/projects-panel-provider'
+import { Analytics } from "@vercel/analytics/next"
+
 
 const geist = Geist({
   subsets: ['latin'],
@@ -35,6 +37,7 @@ export default function RootLayout({
             <Theme>{children}</Theme>
           </ProjectsPanelProvider>
         </RouteProvider>
+        <Analytics />
       </body>
     </html >
   )
